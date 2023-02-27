@@ -9,20 +9,29 @@
 </head>
 <body>
     <div class="header">
-        <button>high scores</button>
+        <button id="high-score-btn" class="high-score-btn">high scores</button>
         <h1>coding quiz</h1>
         <pt id="countdown" class="countdown">0:60</p>
     </div>
     <div class="container">
         <div id="question-container" class="hide">
             <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-grid">
-            </div>
+            <div id="answer-buttons" class="btn-grid"></div>
         </div>    
         <div class="controls">
             <button id="start-btn" class="start-btn btn">Start</button>
         </div>
     </div>
+    <div id="text-box" class="text-box">
+        <article>
+            <h2>Please enter your Initials.</h2>
+            <label for="player">Initials:</label>
+            <input type="text" placeholder="initials" id="initials" maxlength="3">
+            <input type="button" id="inputButton" value="Submit">
+            <p class="output" id="output1"></p>
+        </article>
+    </div>
+    <p id ="high-score" class ="high-score"></p>
     <script src="index.js"></script>
 </body>
 </html>

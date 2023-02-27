@@ -4,11 +4,11 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const startingTime = 1;
 let time = startingTime * 60;
-
 let myInterval;
-
 let shuffledQuestions, currentQuestionIndex
-
+const txt1 = document.getElementById('initials');
+const inputButton=document.getElementById('inputButton');
+const textOutput=document.getElementById('output1');
 const countdownEl = document.getElementById('countdown');
 
 // setInterval(updateCountdown, 1000);
@@ -19,7 +19,6 @@ function updateCountdown() {
 
     countdownEl.innerHTML = `${minutes}: ${seconds}`;
     time--;
-
     if(time < 0){
         clearInterval(myInterval)
     }
@@ -58,13 +57,18 @@ function showQuestion(question) {
     })
   }
 
-function selectAnswer(){
+function selectAnswer(event){
     currentQuestionIndex++ //index =index+1
+    if(!event.target.dataset.correct){
+        time = time - 10
+    }
+
+
     if(questions.length > currentQuestionIndex) {
         showQuestion(shuffledQuestions[currentQuestionIndex])
     } else{
         alert("game over")
-        'game over'
+        'game over' 
         clearInterval(myInterval)
     }
     
@@ -119,3 +123,23 @@ const questions=[
         ]
     }
 ]
+
+function inputTextSpot(){
+    var initials = txt1.value;
+    // console.log('hello')
+    localStorage.setItem('score', initials)
+    // console.log(score)
+    localStorage.setItem('timeLeft', time)
+    console.log(time)
+}
+
+function displayScore(){
+    var score = localStorage.getItem('score')
+    var time = localStorage.getItem('timeLeft')
+    document.getElementById('high-score').textContent = score + time
+
+}
+
+inputButton.addEventListener('click', inputTextSpot);
+
+document.getElementById('high-score-btn').addEventListener('click', displayScore);
